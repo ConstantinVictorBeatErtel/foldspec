@@ -1,0 +1,9 @@
+{
+  "title": "DisplayUnits",
+  "type": "string",
+  "enum": [
+    "mm",
+    "in"
+  ],
+  "$defs": {}
+}

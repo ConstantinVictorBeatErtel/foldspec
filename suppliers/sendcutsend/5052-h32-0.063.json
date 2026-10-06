@@ -1,0 +1,37 @@
+{
+  "profile_id": "sendcutsend-5052-h32-0.063in",
+  "version": 1,
+  "retrieved_at": "2026-10-04",
+  "review_due": "2026-11-03",
+  "status": "incomplete",
+  "stock": {
+    "material": "5052-H32 aluminum",
+    "thickness_mm": 1.6002,
+    "thickness_in": 0.063
+  },
+  "sources": [
+    {
+      "url": "https://sendcutsend.com/materials/5052-aluminum/",
+      "topic": "Material and thickness availability"
+    },
+    {
+      "url": "https://sendcutsend.com/guidelines/sheet-cutting/",
+      "topic": "Flat-cut file and geometry requirements"
+    },
+    {
+      "url": "https://sendcutsend.com/services/cnc-bending/",
+      "topic": "CNC bending service and process parameters"
+    }
+  ],
+  "confirmed": [
+    "The material catalog lists 5052 aluminum at 0.063 inch and indicates bending support.",
+    "Flat-cut parts use DXF; formed parts use STEP for supplier submission."
+  ],
+  "unverified": [
+    "Bend radius and tooling constraints for this exact stock and supported feature ranges.",
+    "Minimum hole, slot, and feature-to-bend distances for every supported operation.",
+    "Maximum part envelope, tolerance, and upload acceptance for the generated files."
+  ],
+  "review_policy_days": 30,
+  "notes": "Research baseline only. This profile is intentionally incomplete and does not establish manufacturing readiness."
+}

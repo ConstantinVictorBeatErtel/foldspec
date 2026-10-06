@@ -1,0 +1,177 @@
+{
+  "properties": {
+    "revision": {
+      "title": "Revision",
+      "type": "integer"
+    },
+    "geometry_status": {
+      "enum": [
+        "valid",
+        "invalid"
+      ],
+      "title": "Geometry Status",
+      "type": "string"
+    },
+    "supplier_status": {
+      "enum": [
+        "passed",
+        "incomplete",
+        "failed"
+      ],
+      "title": "Supplier Status",
+      "type": "string"
+    },
+    "evidence_status": {
+      "default": "experimental",
+      "enum": [
+        "experimental",
+        "validated"
+      ],
+      "title": "Evidence Status",
+      "type": "string"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/Finding"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "features": {
+      "items": {
+        "$ref": "#/$defs/InspectionFeature"
+      },
+      "title": "Features",
+      "type": "array"
+    },
+    "bounds_mm": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Bounds Mm",
+      "type": "object"
+    },
+    "glb_url": {
+      "title": "Glb Url",
+      "type": "string"
+    },
+    "export_url": {
+      "title": "Export Url",
+      "type": "string"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "revision",
+    "geometry_status",
+    "supplier_status",
+    "glb_url",
+    "export_url"
+  ],
+  "title": "BuildResult",
+  "type": "object",
+  "$defs": {
+    "Finding": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "pass",
+            "warning",
+            "error",
+            "unknown"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        },
+        "feature_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Feature Id"
+        }
+      },
+      "required": [
+        "id",
+        "severity",
+        "title",
+        "detail"
+      ],
+      "title": "Finding",
+      "type": "object"
+    },
+    "InspectionFeature": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "dimensions": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "title": "Dimensions",
+          "type": "object"
+        },
+        "point_mm": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Point Mm"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "label"
+      ],
+      "title": "InspectionFeature",
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "template_id": {
+      "$ref": "#/$defs/TemplateId"
+    },
+    "recipe_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Recipe Version",
+      "type": "string"
+    },
+    "material": {
+      "const": "5052-H32 aluminum",
+      "default": "5052-H32 aluminum",
+      "title": "Material",
+      "type": "string"
+    },
+    "stock_thickness_mm": {
+      "default": 1.6002,
+      "exclusiveMinimum": 0,
+      "title": "Stock Thickness Mm",
+      "type": "number"
+    },
+    "supplier_profile_id": {
+      "const": "sendcutsend-5052-h32-0.063in",
+      "default": "sendcutsend-5052-h32-0.063in",
+      "title": "Supplier Profile Id",
+      "type": "string"
+    },
+    "supplier_profile_version": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Supplier Profile Version",
+      "type": "integer"
+    },
+    "quantity": {
+      "default": 1,
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Quantity",
+      "type": "integer"
+    },
+    "revision": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "parameters": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Parameters",
+      "type": "object"
+    },
+    "holes": {
+      "items": {
+        "additionalProperties": {
+          "type": "number"
+        },
+        "type": "object"
+      },
+      "title": "Holes",
+      "type": "array"
+    },
+    "slots": {
+      "items": {
+        "additionalProperties": {
+          "type": "number"
+        },
+        "type": "object"
+      },
+      "title": "Slots",
+      "type": "array"
+    },
+    "cutouts": {
+      "items": {
+        "additionalProperties": {
+          "type": "number"
+        },
+        "type": "object"
+      },
+      "title": "Cutouts",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "confirmed_requirements": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Confirmed Requirements",
+      "type": "array"
+    }
+  },
+  "required": [
+    "template_id"
+  ],
+  "title": "PartSpec",
+  "type": "object",
+  "$defs": {
+    "TemplateId": {
+      "enum": [
+        "rectangular_plate",
+        "circular_plate",
+        "l_bracket",
+        "u_channel",
+        "z_bracket"
+      ],
+      "title": "TemplateId",
+      "type": "string"
+    }
+  }
+}

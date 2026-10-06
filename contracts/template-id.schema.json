@@ -1,0 +1,12 @@
+{
+  "title": "TemplateId",
+  "type": "string",
+  "enum": [
+    "rectangular_plate",
+    "circular_plate",
+    "l_bracket",
+    "u_channel",
+    "z_bracket"
+  ],
+  "$defs": {}
+}

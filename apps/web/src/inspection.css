@@ -1,0 +1,52 @@
+.build-overlay.updating {
+  inset: 48px auto auto 14px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+  padding: 9px 11px;
+  border: 1px solid #ffffff24;
+  border-radius: 6px;
+  background: #292d32e8;
+  backdrop-filter: blur(9px);
+}
+
+.build-overlay.updating .spinner {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 13px;
+  height: 13px;
+}
+
+.build-overlay.updating span:not(.spinner) {
+  padding-right: 20px;
+}
+
+.view-cube .cube-back {
+  min-width: 54px;
+  padding: 5px 7px;
+  border: 1px solid #ffffff20;
+  border-radius: 4px;
+  background: #31363cab;
+  color: #d7d9da;
+  font: 7px var(--mono);
+  letter-spacing: .06em;
+}
+
+.view-cube .cube-back:hover {
+  color: #92b0ff;
+}
+
+:focus-visible {
+  outline: 2px solid #5d7fe3;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

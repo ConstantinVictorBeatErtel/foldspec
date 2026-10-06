@@ -1,0 +1,47 @@
+{
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "pass",
+        "warning",
+        "error",
+        "unknown"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "detail": {
+      "title": "Detail",
+      "type": "string"
+    },
+    "feature_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Feature Id"
+    }
+  },
+  "required": [
+    "id",
+    "severity",
+    "title",
+    "detail"
+  ],
+  "title": "Finding",
+  "type": "object",
+  "$defs": {}
+}

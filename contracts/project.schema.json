@@ -1,0 +1,370 @@
+{
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "title": "Updated At",
+      "type": "string"
+    },
+    "revision": {
+      "default": 1,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "display_units": {
+      "$ref": "#/$defs/DisplayUnits",
+      "default": "mm"
+    },
+    "spec": {
+      "$ref": "#/$defs/PartSpec"
+    },
+    "conversation": {
+      "items": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "type": "object"
+      },
+      "title": "Conversation",
+      "type": "array"
+    },
+    "build": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/BuildResult"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "name",
+    "spec"
+  ],
+  "title": "Project",
+  "type": "object",
+  "$defs": {
+    "BuildResult": {
+      "properties": {
+        "revision": {
+          "title": "Revision",
+          "type": "integer"
+        },
+        "geometry_status": {
+          "enum": [
+            "valid",
+            "invalid"
+          ],
+          "title": "Geometry Status",
+          "type": "string"
+        },
+        "supplier_status": {
+          "enum": [
+            "passed",
+            "incomplete",
+            "failed"
+          ],
+          "title": "Supplier Status",
+          "type": "string"
+        },
+        "evidence_status": {
+          "default": "experimental",
+          "enum": [
+            "experimental",
+            "validated"
+          ],
+          "title": "Evidence Status",
+          "type": "string"
+        },
+        "findings": {
+          "items": {
+            "$ref": "#/$defs/Finding"
+          },
+          "title": "Findings",
+          "type": "array"
+        },
+        "features": {
+          "items": {
+            "$ref": "#/$defs/InspectionFeature"
+          },
+          "title": "Features",
+          "type": "array"
+        },
+        "bounds_mm": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Bounds Mm",
+          "type": "object"
+        },
+        "glb_url": {
+          "title": "Glb Url",
+          "type": "string"
+        },
+        "export_url": {
+          "title": "Export Url",
+          "type": "string"
+        },
+        "generated_at": {
+          "format": "date-time",
+          "title": "Generated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "revision",
+        "geometry_status",
+        "supplier_status",
+        "glb_url",
+        "export_url"
+      ],
+      "title": "BuildResult",
+      "type": "object"
+    },
+    "DisplayUnits": {
+      "enum": [
+        "mm",
+        "in"
+      ],
+      "title": "DisplayUnits",
+      "type": "string"
+    },
+    "Finding": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "pass",
+            "warning",
+            "error",
+            "unknown"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        },
+        "feature_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Feature Id"
+        }
+      },
+      "required": [
+        "id",
+        "severity",
+        "title",
+        "detail"
+      ],
+      "title": "Finding",
+      "type": "object"
+    },
+    "InspectionFeature": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "dimensions": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "title": "Dimensions",
+          "type": "object"
+        },
+        "point_mm": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Point Mm"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "label"
+      ],
+      "title": "InspectionFeature",
+      "type": "object"
+    },
+    "PartSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "default": 1,
+          "title": "Schema Version",
+          "type": "integer"
+        },
+        "template_id": {
+          "$ref": "#/$defs/TemplateId"
+        },
+        "recipe_version": {
+          "const": "0.1.0",
+          "default": "0.1.0",
+          "title": "Recipe Version",
+          "type": "string"
+        },
+        "material": {
+          "const": "5052-H32 aluminum",
+          "default": "5052-H32 aluminum",
+          "title": "Material",
+          "type": "string"
+        },
+        "stock_thickness_mm": {
+          "default": 1.6002,
+          "exclusiveMinimum": 0,
+          "title": "Stock Thickness Mm",
+          "type": "number"
+        },
+        "supplier_profile_id": {
+          "const": "sendcutsend-5052-h32-0.063in",
+          "default": "sendcutsend-5052-h32-0.063in",
+          "title": "Supplier Profile Id",
+          "type": "string"
+        },
+        "supplier_profile_version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Supplier Profile Version",
+          "type": "integer"
+        },
+        "quantity": {
+          "default": 1,
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Quantity",
+          "type": "integer"
+        },
+        "revision": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Parameters",
+          "type": "object"
+        },
+        "holes": {
+          "items": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object"
+          },
+          "title": "Holes",
+          "type": "array"
+        },
+        "slots": {
+          "items": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object"
+          },
+          "title": "Slots",
+          "type": "array"
+        },
+        "cutouts": {
+          "items": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object"
+          },
+          "title": "Cutouts",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "confirmed_requirements": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Confirmed Requirements",
+          "type": "array"
+        }
+      },
+      "required": [
+        "template_id"
+      ],
+      "title": "PartSpec",
+      "type": "object"
+    },
+    "TemplateId": {
+      "enum": [
+        "rectangular_plate",
+        "circular_plate",
+        "l_bracket",
+        "u_channel",
+        "z_bracket"
+      ],
+      "title": "TemplateId",
+      "type": "string"
+    }
+  }
+}
